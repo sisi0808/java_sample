@@ -37,7 +37,7 @@ class Paint2 extends Frame implements MouseListener,MouseMotionListener{
 
 		for(int i=0;i<objList.size();i++){
 			f=objList.get(i);
-			if(i<limit) f.paint(g);	//表示数を引数個までに制限
+			if(i>objList.size()-limit) f.paint(g);	//表示数を引数個までに制限
 		}
 		if(obj!=null) obj.paint(g);
 	}
@@ -51,8 +51,7 @@ class Paint2 extends Frame implements MouseListener,MouseMotionListener{
       else obj=new Square(flag);	//それ以外の時の処理
 	  }
 		obj.moveto(x,y);
-		obj.color();
-		objList.add(0,obj);
+		objList.add(obj);
 		repaint();
 		if(btn==MouseEvent.BUTTON2) dispose();  //中央ボタンが押された時の処理
 	}
@@ -68,8 +67,7 @@ class Paint2 extends Frame implements MouseListener,MouseMotionListener{
 		}
 		flag=(flag+1)%2;		//交互にサイズを変えるためのflag
 		obj.moveto(x,y);
-		obj.color();
-		objList.add(0,obj);
+		objList.add(obj);
 		repaint();
 	}
 	 public void mouseClicked(MouseEvent e){}
@@ -84,8 +82,7 @@ class Paint2 extends Frame implements MouseListener,MouseMotionListener{
  			else  			obj=new Square(flag);  //それ以外の時の処理
 		}
 		 obj.moveto(x,y);
-		 obj.color();
-		 objList.add(0,obj);
+		 objList.add(obj);
 		 repaint();
 	 }
 	public void mouseMoved(MouseEvent e){}
@@ -108,6 +105,7 @@ class Coord{
 }
 class Figure extends Coord{
 	int size;
+	static int color;
 	static int G;
 	static int Gflag;
 	static int R;
@@ -115,23 +113,25 @@ class Figure extends Coord{
 	static int B;
 	static int Bflag;
 
-	Figure(){}
+	Figure(){
+			 color=(color+1)%100;
 
-	public void color(){
-		if(R>=255 || R==0)  Rflag=(Rflag+1)%2;
-		if(Rflag==1) R++;
-		else R--;
-
-		if(G>=252 || G==0)  Gflag=(Gflag+1)%2;
-		if(Gflag==1) G=G+3;
-		else G--;
-
-		if(B>=254 || B==0) Bflag=(Bflag+1)%2;
-		if(Bflag==1) B=B+2;
-		else B--;
+	     if(color%5==0){
+				  if(R>=255 || R==0)  Rflag=(Rflag+1)%2;
+				 	if(Rflag==1) R++;
+					else R--;
+			 }
+	     else if(color%3==0){
+				 	if(G>=255 || G==0)  Gflag=(Gflag+1)%2;
+				 	if(Gflag==1) G++;
+					else G--;
+			 }
+	     else if(color%2==0){
+				 if(B>=255 || B==0) Bflag=(Bflag+1)%2;
+				 if(Bflag==1) B++;
+				 else B--;
+			 }
 	}
-
-	Color color = new Color(R,G,B);
 	public void paint(Graphics g){}
 }
 class Circle extends Figure{		//円描画処理
@@ -145,7 +145,7 @@ class Circle extends Figure{		//円描画処理
 	}
 
 	@Override public void paint(Graphics g){
-	  g.setColor(color);
+	  g.setColor(new Color(R,G,B));
 		g.fillOval(x-size/2,y-size/2,size,size);
 	}
 }
@@ -160,7 +160,7 @@ class Square extends Figure{  //四角形描画処理
 	}
 
 	@Override public void paint(Graphics g){
-	  g.setColor(color);
+	  g.setColor(new Color(R,G,B));
 		g.fillRect(x-size/2,y-size/2,size,size);
 	}
 }

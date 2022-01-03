@@ -37,7 +37,7 @@ class Paint2 extends Frame implements MouseListener,MouseMotionListener{
 
 		for(int i=0;i<objList.size();i++){
 			f=objList.get(i);
-			if(i<limit) f.paint(g);
+			if(i<objList.size()) f.paint(g);
 		}
 		if(obj!=null) obj.paint(g);
 	}
@@ -118,6 +118,7 @@ class Figure extends Coord{
 	Figure(){}
 
 	public void color(){
+
 		if(R>=255 || R==0)  Rflag=(Rflag+1)%2;
 		if(Rflag==1) R++;
 		else R--;
@@ -129,9 +130,9 @@ class Figure extends Coord{
 		if(B>=254 || B==0) Bflag=(Bflag+1)%2;
 		if(Bflag==1) B=B+2;
 		else B--;
-	}
 
-	Color color = new Color(R,G,B);
+		System.out.println(B+"ggg");
+	}
 	public void paint(Graphics g){}
 }
 class Circle extends Figure{
@@ -145,7 +146,7 @@ class Circle extends Figure{
 	}
 
 	@Override public void paint(Graphics g){
-	  g.setColor(color);
+	  g.setColor(new Color(R,G,B));
 		g.fillOval(x-size/2,y-size/2,size,size);
 	}
 }
@@ -160,7 +161,7 @@ class Square extends Figure{
 	}
 
 	@Override public void paint(Graphics g){
-	  g.setColor(color);
+	  g.setColor(new Color(R,G,B));
 		g.fillRect(x-size/2,y-size/2,size,size);
 	}
 }
