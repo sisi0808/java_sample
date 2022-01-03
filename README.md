@@ -1,7 +1,10 @@
 # Javaプログラム
 
 ## Paint
-![image](https://user-images.githubusercontent.com/52097096/147899540-7798450a-892a-4372-9d15-fdd68baaaa15.png)
+
+- ペイントツール
+![image](https://user-images.githubusercontent.com/52097096/147899947-530c5452-cf9f-47aa-be6d-82333d5b083f.png)
+
 
 
 ## POKER
