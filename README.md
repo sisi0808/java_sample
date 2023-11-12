@@ -1,11 +1,10 @@
 # Javaプログラム
 
-- どちらも大学の課題で作成したもの
-
 ## Paint
 
 - ペイントツール
 ![image](https://user-images.githubusercontent.com/52097096/147899947-530c5452-cf9f-47aa-be6d-82333d5b083f.png)
+
 
 
 ## POKER
